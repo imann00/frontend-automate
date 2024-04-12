@@ -18,13 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchGaugeValue() {
-    fetch("http://localhost:8080/gauge")
+    fetch("http://localhost:80/") // Modify the URL to your PHP endpoint
       .then(response => response.json())
       .then(data => {
-        setGaugeValue(gaugeElement, data);
-        setGaugeValue(gaugeElement2, data);
+        // Extract the "Level" value from the JSON response
+        const level = data.Level;
 
-        console.log("Updated gauge value: " + data);
+        setGaugeValue(gaugeElement, level/30);
+        setGaugeValue(gaugeElement2, level/30);
+
+        console.log("Updated gauge value: " + level);
       })
       .catch(error => {
         console.error('Error fetching gauge value:', error);
