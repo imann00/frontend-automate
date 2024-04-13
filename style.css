@@ -47,3 +47,20 @@
     box-sizing: border-box;
   }
   
+
+.rm {
+    display: flex;
+    
+}
+.input {
+    flex: 1;
+    margin-right: 10px; 
+}
+.submitButton {
+    margin-left: 10px; 
+    
+}
+
+.submitButton button{
+  border-radius: 20px
+}

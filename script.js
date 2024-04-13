@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const gaugeElement = document.querySelector(".gauge");
   const gaugeElement2 = document.querySelector(".gauge2");
+  const levelwts1=document.querySelector(".wts1");
+  const flowwts2=document.querySelector(".wts2");
 
   function setGaugeValue(gauge, value) {
     if (value < 0 || value > 1) {
@@ -18,13 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchGaugeValue() {
-    fetch("http://localhost:8080/gauge")
-      .then(response => response.json())
+    fetch("http://localhost/automatebackend/db.php?action=fetchGaugeValue")
+          .then(response => response.json())
       .then(data => {
-        setGaugeValue(gaugeElement, data);
-        setGaugeValue(gaugeElement2, data);
+        const level = data.Level;
+        const flow=data.Flow;
+        setGaugeValue(gaugeElement, level/30);
+        setGaugeValue(gaugeElement2, level/30);
 
-        console.log("Updated gauge value: " + data);
+        levelwts1.textContent=level;
+        flowwts2.textContent=flow;
+        console.log("Updated gauge value: " + level);
       })
       .catch(error => {
         console.error('Error fetching gauge value:', error);

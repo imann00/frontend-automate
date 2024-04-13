@@ -18,10 +18,20 @@
       <div class="row">
         <div class="col-4">
           <div class="card border-primary mb-3" style="max-width: 18rem">
-            <div class="card-header">Water Tank Sensors</div>
-            <div class="card-body text-primary">
-              <h5 class="card-title">Level(L)</h5>
-              <h5 class="card-title">Flow Rate(m<sup>3</sup>/s)</h5>
+            <div class="card-header">Remote control</div>
+            <div class="card-body text-primary rm">
+              <div><p>Level (L)</p></div>
+                <div>
+                  <input
+                    class="input"
+                    placeholder="..."
+                    min="0"
+                    max="500"
+                    type="number"
+                    name='"Remote Control_DB".Level_Remote'
+                  />
+                </div>
+                <div class="submitButton"><button type="submit">Send!</button></div>
             </div>
           </div>
         </div>
@@ -48,8 +58,8 @@
           <div class="card border-primary mb-3" style="max-width: 18rem">
             <div class="card-header">Water Tank Sensors</div>
             <div class="card-body text-primary">
-              <h5 class="card-title">Level(L)</h5>
-              <h5 class="card-title">Flow Rate(m<sup>3</sup>/s)</h5>
+              <h5 class="card-title ">Level(L) <span class="wts1"></span></h5>
+              <h5 class="card-title ">Flow Rate(m<sup>3</sup>/s) <span class="wts2"></span></h5>
             </div>
           </div>
         </div>
