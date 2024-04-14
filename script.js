@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function fetchGaugeValue() {
+<<<<<<< HEAD
     fetch("http://localhost/automatebackend/db.php?action=fetchGaugeValue")
       .then(response => response.json())
       .then(data => {
@@ -33,6 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         createHistoricalPlot();
         
+=======
+    fetch("http://localhost:80/") // Modify the URL to your PHP endpoint
+      .then(response => response.json())
+      .then(data => {
+        // Extract the "Level" value from the JSON response
+        const level = data.Level;
+
+        setGaugeValue(gaugeElement, level/30);
+        setGaugeValue(gaugeElement2, level/30);
+
+>>>>>>> 5fd5447c460864f2337efc0658bc58d832036374
         console.log("Updated gauge value: " + level);
       })
       .catch(error => {
