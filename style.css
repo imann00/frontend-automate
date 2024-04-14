@@ -1,3 +1,6 @@
+.body {
+  background-color: rgb(214, 226, 230); 
+}
 .gauge,.gauge2 {
     width: 100%;
     max-width: 250px;
@@ -63,4 +66,15 @@
 
 .submitButton button{
   border-radius: 20px
+}
+.diag{
+  height: auto;
+  width: 600px;
+  margin-left: calc(50% - 300px);
+  overflow: auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
 }
