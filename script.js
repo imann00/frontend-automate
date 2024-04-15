@@ -19,32 +19,38 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(gauge.querySelector(".gauge__fill").style.transform);
   }
 
+  function fetchWaterSensors(){
+    fetch("http://localhost/automatebackend/actuator.php?action=fetchWaterSensors")
+      .then(response => response.json())
+      .then(data => {
+        const filling = data['filling valve_rate'];
+        const draining = data['draining valve_rate'];
+
+        setGaugeValue(gaugeElement, filling/100);
+        setGaugeValue(gaugeElement2, draining/100);
+
+        createHistoricalPlot();
+
+      })
+      .catch(error => {
+        console.error('Error fetching gauge value:', error);
+      });
+  }
   function fetchGaugeValue() {
-<<<<<<< HEAD
-    fetch("http://localhost/automatebackend/db.php?action=fetchGaugeValue")
+
+    fetch("http://localhost/automatebackend/capteurs.php?action=fetchGaugeValue")
       .then(response => response.json())
       .then(data => {
         const level = data.Level;
         const flow = data.Flow;
-        setGaugeValue(gaugeElement, level / 30);
-        setGaugeValue(gaugeElement2, level / 30);
+        
 
         levelwts1.textContent = level;
         flowwts2.textContent = flow;
 
         createHistoricalPlot();
-        
-=======
-    fetch("http://localhost:80/") // Modify the URL to your PHP endpoint
-      .then(response => response.json())
-      .then(data => {
-        // Extract the "Level" value from the JSON response
-        const level = data.Level;
 
-        setGaugeValue(gaugeElement, level/30);
-        setGaugeValue(gaugeElement2, level/30);
-
->>>>>>> 5fd5447c460864f2337efc0658bc58d832036374
+  
         console.log("Updated gauge value: " + level);
       })
       .catch(error => {
@@ -54,14 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial fetch
   fetchGaugeValue();
-
+  fetchWaterSensors();
   // Polling interval (in milliseconds)
   const pollingInterval = 1000; // Adjust as needed
 
   // Polling loop
   setInterval(fetchGaugeValue, pollingInterval);
   function createHistoricalPlot() {
-    fetch("http://localhost/automatebackend/db.php?action=fetchHistoricalData")
+    fetch("http://localhost/automatebackend/capteurs.php?action=fetchHistoricalData")
       .then(response => response.json())
       .then(data => {
         const flowData = data.map(entry => entry.Flow);
