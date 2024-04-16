@@ -118,3 +118,46 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 });
+
+// document.getElementById("sendButton").addEventListener("click", function() {
+//   // Get the value from the input field
+//   var levelValue = document.getElementById("levelInput").value;
+  
+//   // Get the state of the checkbox and convert it to a string
+//   var isChecked = document.getElementById("checkboxIsChecked").checked.toString();
+//   console.log("level "+levelValue)
+//   // Send an AJAX request to the server
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("POST", "save_remote_control.php", true);
+//   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//   xhr.onreadystatechange = function() {
+//     if (xhr.readyState === 4 && xhr.status === 200) {
+//       // Response from the server
+//       console.log(xhr.responseText);
+//     }
+//   };
+//   xhr.send("levelValue=" + levelValue + "&isChecked=" + isChecked);
+// });
+
+function send() {
+
+  var levelValue = document.getElementById("levelInput").value;
+  
+  // Get the state of the checkbox and convert it to a string
+  var isChecked = document.getElementById("checkboxIsChecked").checked.toString();
+  console.log("level "+levelValue)
+  // Send an AJAX request to the server
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://localhost/automatebackend/Rmcontrol.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      // Response from the server
+      console.log(xhr.responseText);
+    }
+  };
+  xhr.send("levelValue=" + levelValue + "&isChecked=" + isChecked);
+
+
+}
+
