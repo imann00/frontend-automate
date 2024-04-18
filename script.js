@@ -142,8 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function send() {
 
   var levelValue = document.getElementById("levelInput").value;
-  
-  // Get the state of the checkbox and convert it to a string
+  if( levelValue >=10 && levelValue <= 300){
+    // Get the state of the checkbox and convert it to a string
   var isChecked = document.getElementById("checkboxIsChecked").checked.toString();
   console.log("level "+levelValue)
   // Send an AJAX request to the server
@@ -156,6 +156,11 @@ function send() {
       console.log(xhr.responseText);
     }
   };
+  }
+  else{
+    alert("level value must be between 10 and 300");
+  }
+  
   xhr.send("levelValue=" + levelValue + "&isChecked=" + isChecked);
 
 
